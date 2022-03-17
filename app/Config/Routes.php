@@ -33,6 +33,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// lógica para iniciar una sesión
+$routes->post('/auth/login', 'AuthController::login');
+
+// lógica para cerrar sesión
+$routes->get('/auth/logout', 'AuthController::logout');
+
+// vista de administración
+$routes->get('/admin', 'Home::admin');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
