@@ -39,6 +39,10 @@ $routes->post('/auth/login', 'AuthController::login');
 // lógica para cerrar sesión
 $routes->get('/auth/logout', 'AuthController::logout');
 
+$routes->group('empleados', function ($routes) {
+    $routes->add('/', 'EmpleadoController::index');
+});
+
 // vista de administración
 $routes->get('/admin', 'Home::admin');
 /*

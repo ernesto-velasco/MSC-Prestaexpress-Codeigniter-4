@@ -51,7 +51,7 @@
                         <a class="nav-link " aria-current="page" href="#">Reportes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">Empleados</a>
+                        <a class="nav-link " aria-current="page" href="<?php echo base_url('empleados'); ?>">Empleados</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav">
