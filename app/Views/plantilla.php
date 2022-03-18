@@ -68,6 +68,8 @@
             </div>
         </div>
     </nav>
+    <!-- Tambien se pueden importar componentes -->
+    <?php echo $this->include('componentes/alerta'); ?>
     <!-- Fin Navbar -->
     <!-- Inicio Contenido -->
     <?= $this->renderSection('contenido') ?>
