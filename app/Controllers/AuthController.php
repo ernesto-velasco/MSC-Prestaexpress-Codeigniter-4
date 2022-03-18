@@ -29,7 +29,7 @@ class AuthController extends BaseController
         endif;
 
         // Retornar mensaje de error si la contraseña es incorrecta
-        if ($empleado->contrasena == $contrasena) :
+        if ($empleado->contrasena != $contrasena) :
             $session->setFlashdata('error', 'La contraseña es incorrecta, intenta de nuevo.');
             return redirect()->to(base_url('/'));
         endif;
