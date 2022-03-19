@@ -42,6 +42,8 @@ $routes->get('/auth/logout', 'AuthController::logout');
 $routes->add('/empleados', 'EmpleadoController::index');
 $routes->get('/empleados/crear', 'EmpleadoController::crear');
 $routes->post('empleados/registrar', 'EmpleadoController::registrar');
+$routes->get('empleados/editar/(:num)', 'EmpleadoController::editar/$1');
+$routes->post('empleados/actualizar/(:num)', 'EmpleadoController::actualizar/$1');
 
 // vista de administración
 $routes->get('/admin', 'Home::admin');

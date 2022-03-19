@@ -66,4 +66,73 @@ class EmpleadoController extends BaseController
 
         return redirect()->to(base_url('empleados')); // retornamos a la url principal de empleados
     }
+
+    // vista de formulario para editar un empleado
+    public function editar($id_empleado)
+    {
+        $empleadoModel = new EmpleadoModel(); // instancia del modelo empleado para buscar al empleado por $id_empleado que recibimos como parámetro por la url
+        $puestosModel = new PuestoModel(); // instancia del modelo puestos para enviarlos a la vista del formulario y que el usuario pueda seleccionar uno
+        $detEmpPuestoModel = new DetEmpPuestoModel(); // instancia del modelo DetEmpPuesto para buscar el puesto actual del empleado a editar, y para mostrar el historial de puestos del empleado
+
+        $data['empleado'] = $empleadoModel->find($id_empleado); // información del empleado a modificar
+        $data['puestos'] = $puestosModel->findAll(); // lista de puestos disponibles
+        $data['puestoActual'] = $detEmpPuestoModel->where('id_empleado', $id_empleado)->first();
+
+        if (!$data['empleado']) :
+            session()->setFlashdata('error', 'Ese usuario no existe.');
+            return redirect()->to(base_url('/empleados'));
+        endif;
+
+        $data['puestosEmpleado'] = $detEmpPuestoModel
+            ->select('puesto.pst_nombre, det_emp_puesto.*') // obtener el nombre del puesto y la información de la tabla detalle 
+            ->join('puesto', 'puesto.id_puesto = det_emp_puesto.id_puesto') // inner join de tabla puesto con det_emp_puesto
+            ->where('id_empleado', $id_empleado)
+            ->orderBy('id_det_emp_puesto', 'desc')
+            ->withDeleted() // por que queremos obtener incluso los puestos que no son actuales
+            ->find(); // lista de puestos que ha tenido el empleado, como se necesita hacer 
+        return view('empleado/editar', $data);
+    }
+
+    // actualizar los datos de un registro
+    public function actualizar($id_empleado)
+    {
+        $empleadoModel = new EmpleadoModel(); // modelo para actualizar empleado
+        $detEmpPuestoModel = new DetEmpPuestoModel(); // modelo para actualizar el detalle empleado puesto
+
+        $data = [
+            'emp_nombre' => $this->request->getPost('emp_nombre'),
+            'usuario' => $this->request->getPost('usuario'),
+            'estado'  => $this->request->getPost('estado')
+        ]; // información recibida del formulario
+
+        // Solo actualizar la contraseña si el usuario ingreso una nueva en  el formulario
+        if ($this->request->getPost('contrasena')) :
+            $data = [
+                'contrasena' => password_hash($this->request->getPost('contrasena'), PASSWORD_BCRYPT)
+            ]; // agregamos la nueva contraseña al array de campos que se van a actualizar
+        endif;
+
+        $empleadoModel->update($id_empleado, $data); // actualizamos el empleado con la info del formulario
+
+        // si el puesto del empleado cambio, actualizamos la tabla de detalle
+        $puestoActual = $detEmpPuestoModel->where('id_empleado', $id_empleado)->orderBy('id_det_emp_puesto', 'desc')->first(); // buscamos el puesto actual registrado del empleado
+        if (!$puestoActual) $detEmpPuestoModel->insert([
+            'id_empleado' => $id_empleado,
+            'id_puesto' => $this->request->getPost('puesto')
+        ]);
+        if (
+            $puestoActual and $puestoActual->id_puesto != $this->request->getPost('puesto')
+        ) : // revisamos si el puesto recibido del formulario es diferente para actualizarlo
+            // removemos el puesto actual
+            $detEmpPuestoModel->delete($puestoActual->id_det_emp_puesto);
+            // ingresamos el nuevo puesto
+            $detEmpPuestoModel->insert([
+                'id_empleado' => $id_empleado,
+                'id_puesto' => $this->request->getPost('puesto')
+            ]);
+        endif;
+
+        session()->setFlashdata('success', 'El usuario fue actualizado.');
+        return redirect()->back();
+    }
 }
