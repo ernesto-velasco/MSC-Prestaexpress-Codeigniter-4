@@ -31,7 +31,7 @@
                         <td><?= $empleado->fecha_ingreso; ?></td>
                         <td>
                             <a href="<?php echo base_url('empleados/editar/' . $empleado->id_empleado); ?>" class="btn btn-outline-primary btn-sm">Editar</a>
-                            <a href="" class="btn btn-outline-danger btn-sm">Dar de baja</a>
+                            <a href="<?php echo base_url('empleados/eliminar/' . $empleado->id_empleado); ?>" class="btn btn-outline-danger btn-sm">Dar de baja</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

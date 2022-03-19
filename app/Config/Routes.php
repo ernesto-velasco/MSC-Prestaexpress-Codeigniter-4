@@ -44,6 +44,7 @@ $routes->get('/empleados/crear', 'EmpleadoController::crear');
 $routes->post('empleados/registrar', 'EmpleadoController::registrar');
 $routes->get('empleados/editar/(:num)', 'EmpleadoController::editar/$1');
 $routes->post('empleados/actualizar/(:num)', 'EmpleadoController::actualizar/$1');
+$routes->get('empleados/eliminar/(:num)', 'EmpleadoController::eliminar/$1');
 
 // vista de administración
 $routes->get('/admin', 'Home::admin');

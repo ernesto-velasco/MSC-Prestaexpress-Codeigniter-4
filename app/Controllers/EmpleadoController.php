@@ -135,4 +135,13 @@ class EmpleadoController extends BaseController
         session()->setFlashdata('success', 'El usuario fue actualizado.');
         return redirect()->back();
     }
+
+    // eliminar un registro por id
+    public function eliminar($id_empleado)
+    {
+        $empleadoModel = new EmpleadoModel(); // modelo empleado para eliminarlo de la bd
+        $empleadoModel->delete($id_empleado); // eliminamos al empleado con su id
+        session()->setFlashdata('success', 'El usuario fue eliminado.'); // mandamos un mensaje de éxito a la vista
+        return redirect()->to(base_url('/empleados')); // redirigimos a la vista principal de empleados
+    }
 }
