@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[744],{7843:function(e){e.exports=JSON.parse('{"allTagsPath":" /MSC-Prestaexpress-Codeigniter-4/blog/tags","slug":" /MSC-Prestaexpress-Codeigniter-4/blog/tags/hello","name":"hello","count":2,"permalink":" /MSC-Prestaexpress-Codeigniter-4/blog/tags/hello"}')}}]);
