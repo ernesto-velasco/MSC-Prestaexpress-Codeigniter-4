@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[737],{4092:function(s){s.exports=JSON.parse('{"allTagsPath":"/MSC-Prestaexpress-Codeigniter-4/blog/tags","slug":"/MSC-Prestaexpress-Codeigniter-4/blog/tags/docusaurus","name":"docusaurus","count":4,"permalink":"/MSC-Prestaexpress-Codeigniter-4/blog/tags/docusaurus"}')}}]);
