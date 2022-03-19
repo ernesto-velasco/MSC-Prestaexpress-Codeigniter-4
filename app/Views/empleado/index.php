@@ -4,7 +4,7 @@
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Empleados</h3>
         <div class="col-auto">
-            <a href="" class="btn btn-primary btn-sm" title="Nuevo empleado">
+            <a href="<?php echo base_url('empleados/crear'); ?>" class="btn btn-primary btn-sm" title="Nuevo empleado">
                 <i class="bi bi-plus-circle"></i>
                 Nuevo
             </a>
