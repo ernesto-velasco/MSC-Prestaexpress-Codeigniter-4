@@ -23,6 +23,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'validarSolicitudPrestamo' => \App\Filters\ValidarSolicitudPrestamo::class,
+        'isLoggedIn' => \App\Filters\IsLoggedIn::class,
+        'isAdmin' => \App\Filters\IsAdmin::class,
     ];
 
     /**
@@ -36,6 +39,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            'isLoggedIn' => ['except' => ['/', '/auth/login']]
         ],
         'after' => [
             'toolbar',
@@ -49,6 +53,7 @@ class Filters extends BaseConfig
      * particular HTTP method (GET, POST, etc.).
      *
      * Example:
+     * 
      * 'post' => ['csrf', 'throttle']
      *
      * @var array
@@ -64,5 +69,7 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'isAdmin' => ['before' => ['empleados', 'reportes', 'puestos']],
+    ];
 }

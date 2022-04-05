@@ -21,7 +21,16 @@ class EmpleadoController extends BaseController
         // CodeIgniter sabe automaticamente que aquellos usuarios con una fecha de egreso registrada
         // son los que no estan vigentes
         // ** Armamos la consulta 
-        $data['empleados'] = $empleadoModel->paginate(2);
+        $data['empleados'] = $empleadoModel
+            ->select('empleado.*, puesto.pst_nombre')
+            ->join('det_emp_puesto', 'empleado.id_empleado = det_emp_puesto.id_empleado')
+            ->join('puesto', 'puesto.id_puesto = det_emp_puesto.id_puesto')
+            ->where('det_emp_puesto.fecha_fin is', null)
+            ->orderBy('det_emp_puesto.id_det_emp_puesto', 'desc')
+            ->groupBy('empleado.id_empleado')
+            ->paginate(7);
+        // print_r($data['empleados']);
+        // return;
         // si usamos la libreria paginate, debemos generar los links
         $data['pager'] = $empleadoModel->pager;
         // enviamos esta informacion a la vista

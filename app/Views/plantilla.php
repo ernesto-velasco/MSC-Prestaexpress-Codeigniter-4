@@ -39,20 +39,25 @@
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link " aria-current="page" href="<?php echo base_url('admin'); ?>">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">Solicitus</a>
+                        <a class="nav-link " aria-current="page" href="<?php echo base_url('prestamos/solicitud'); ?>">Solicitud</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">Préstamos</a>
+                        <a class="nav-link " aria-current="page" href="<?php echo base_url('prestamos'); ?>">Préstamos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">Reportes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="<?php echo base_url('empleados'); ?>">Empleados</a>
-                    </li>
+                    <?php if (session('empleado')->puesto->pst_nombre == "Administrador") : ?>
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#">Reportes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="<?php echo base_url('empleados'); ?>">Empleados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="<?php echo base_url('puestos'); ?>">Puestos</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
@@ -76,7 +81,7 @@
     <!-- Fin Contenido -->
 
     <!-- Inicio footer -->
-    <div class="container border-top">
+    <div class="container border-top mt-4">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>

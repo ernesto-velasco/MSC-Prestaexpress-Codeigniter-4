@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 // importar el modelo de Empleado
 use App\Models\EmpleadoModel;
+use App\Models\PuestoModel;
 
 class AuthController extends BaseController
 {
@@ -37,6 +38,19 @@ class AuthController extends BaseController
         // Si el usuario y la contraseña son correcos
         // se crea una sesión con la info del usuario
         $session->empleado = $empleado;
+
+        if ($empleado) :
+            $puestoModel = new PuestoModel(); // * si se encontró un empleado, obtenemos su puesto actual
+            $puesto = $puestoModel
+                ->join('det_emp_puesto', 'puesto.id_puesto = det_emp_puesto.id_puesto')
+                ->where(
+                    'det_emp_puesto.id_empleado',
+                    $empleado->id_empleado
+                )
+                ->where('det_emp_puesto.fecha_fin is null')
+                ->first();
+            $empleado->puesto = $puesto;
+        endif;
 
         // redirigimos a la vista de administración
         return redirect()->to(base_url('/admin'));

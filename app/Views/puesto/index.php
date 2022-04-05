@@ -2,9 +2,9 @@
 <?php echo $this->section('contenido'); ?>
 <div class="container mt-3">
     <div class="row justify-content-between align-items-center">
-        <h3 class="col-auto">Empleados</h3>
+        <h3 class="col-auto">Puestos</h3>
         <div class="col-auto">
-            <a href="<?php echo base_url('empleados/crear'); ?>" class="btn btn-primary btn-sm" title="Nuevo empleado">
+            <a href="<?php echo base_url('puestos/crear'); ?>" class="btn btn-primary btn-sm" title="Nuevo puesto">
                 <i class="bi bi-plus-circle"></i>
                 Nuevo
             </a>
@@ -15,25 +15,20 @@
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
-                <th>Fecha de ingreso</th>
-                <th>Puesto</th>
+                <th>Sueldo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($empleados) and !is_null($empleados)) : ?>
-                <?php foreach ($empleados as $k => $empleado) : ?>
+            <?php if (isset($puestos) and !is_null($puestos)) : ?>
+                <?php foreach ($puestos as $k => $puesto) : ?>
                     <tr>
                         <td class="font-weight-bold"><?= $k + 1; ?></td>
+                        <td><?= $puesto->pst_nombre; ?></td>
+                        <td><?= $puesto->pst_sueldo; ?></td>
                         <td>
-                            <p class="mb-0"><?= $empleado->emp_nombre; ?></p>
-                            <p class="font-italic text-muted small mb-0"><?= $empleado->usuario; ?></p>
-                        </td>
-                        <td><?= $empleado->fecha_ingreso; ?></td>
-                        <td><?= $empleado->pst_nombre; ?></td>
-                        <td>
-                            <a href="<?php echo base_url('empleados/editar/' . $empleado->id_empleado); ?>" class="btn btn-outline-primary btn-sm">Editar</a>
-                            <a href="<?php echo base_url('empleados/eliminar/' . $empleado->id_empleado); ?>" class="btn btn-outline-danger btn-sm">Dar de baja</a>
+                            <a href="<?php echo base_url('puestos/editar/' . $puesto->id_puesto); ?>" class="btn btn-outline-primary btn-sm">Editar</a>
+                            <a href="<?php echo base_url('puestos/eliminar/' . $puesto->id_puesto); ?>" class="btn btn-outline-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
