@@ -12,4 +12,18 @@ class Home extends BaseController
     {
         return view('admin');
     }
+
+    public function form()
+    {
+        return view('form');
+    }
+
+    public function formReceive()
+    {
+        foreach ($this->request->getPost('productos') as $key => $value) {
+            echo ' id_producto ' . $value['id_producto'];
+            echo ' cantidad ' . $value['cantidad'];
+        }
+        echo json_encode($this->request->getPost());
+    }
 }

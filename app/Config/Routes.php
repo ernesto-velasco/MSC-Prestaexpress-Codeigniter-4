@@ -66,6 +66,9 @@ $routes->get('/prestamos/aprobar/(:num)', 'PrestamoController::aprobar/$1');
 $routes->get('/prestamos/eliminar/(:num)', 'PrestamoController::eliminar/$1');
 $routes->get('/prestamos/detalles/(:num)', 'PrestamoController::detalles/$1');
 
+
+$routes->get('/form', 'Home::form');
+$routes->post('/formReceive', 'Home::formReceive');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
