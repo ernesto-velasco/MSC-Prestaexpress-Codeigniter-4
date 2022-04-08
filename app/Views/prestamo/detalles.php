@@ -1,7 +1,7 @@
 <?= $this->extend('plantilla') ?>
 <?= $this->section('contenido') ?>
 <div class="container">
-    <div class="ror">
+    <div class="row">
         <p>Folio: <?= $prestamo->id_prestamo ?></p>
         <p>Estado: <?= $prestamo->estado ?></p>
         <p>Empleado: <?= $prestamo->emp_nombre ?></p>

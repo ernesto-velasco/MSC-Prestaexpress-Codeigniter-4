@@ -65,6 +65,11 @@ $routes->post('/prestamos/registrar', 'PrestamoController::registrar');
 $routes->get('/prestamos/aprobar/(:num)', 'PrestamoController::aprobar/$1');
 $routes->get('/prestamos/eliminar/(:num)', 'PrestamoController::eliminar/$1');
 $routes->get('/prestamos/detalles/(:num)', 'PrestamoController::detalles/$1');
+$routes->get('/abono/(:num)', 'AbonoController::index/$1');
+$routes->get('/abono/registrar/(:num)', 'AbonoController::registrar/$1');
+
+
+
 
 
 $routes->get('/form', 'Home::form');

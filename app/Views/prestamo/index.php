@@ -31,7 +31,7 @@
                                 <?php if ($prestamo->estado == 'SOLICITUD') : ?>
                                     <a href="<?php echo base_url('prestamos/aprobar/' . $prestamo->id_prestamo); ?>" class="btn btn-outline-warning btn-sm">Aprobar</a>
                                 <?php else : ?>
-                                    <a href="" class="btn btn-outline-primary btn-sm">Abonar</a>
+                                    <a href="<?php echo base_url('abono/' . $prestamo->id_prestamo); ?>" class="btn btn-outline-primary btn-sm">Abonar</a>
                                 <?php endif; ?>
                                 <a href="<?php echo base_url('prestamos/eliminar/' . $prestamo->id_prestamo); ?>" class="btn btn-outline-danger btn-sm">Eliminar</a>
                             <?php endif; ?>

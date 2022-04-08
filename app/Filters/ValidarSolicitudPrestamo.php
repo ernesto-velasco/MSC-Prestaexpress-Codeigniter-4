@@ -31,7 +31,7 @@ class ValidarSolicitudPrestamo implements FilterInterface
             array_push($razones, 'Tiene un préstamo activo');
         endif;
         if ($razones) :
-            session()->setFlashdata('razones', $razones);
+            session()->setFlashdata('motivos', $razones);
         endif;
     }
 
